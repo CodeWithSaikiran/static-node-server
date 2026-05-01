@@ -15,3 +15,4 @@ npm start
 3. Open your browser and visit: [http://localhost:3000](http://localhost:3000)
 
 Your static files are in the `public` folder.
+# static-node-server
