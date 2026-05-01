@@ -1,0 +1,14 @@
+{
+    "name": "static-node-server",
+    "version": "1.0.0",
+    "description": "A simple Node.js server to serve static files using Express.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "helmet": "^7.0.0",
+        "compression": "^1.7.4"
+    }
+}
