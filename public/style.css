@@ -1,11 +1,141 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 2rem;
-    color: #333;
+:root {
+    --accent: #ff2d55;
+    --glass: rgba(255, 255, 255, 0.05);
+    --text-main: #ffffff;
 }
 
-h1 {
-    color: #0078d7;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0f1014;
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* Background Glow Effect */
+.glow-bg {
+    position: fixed;
+    top: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 45, 85, 0.15) 0%, transparent 70%);
+    z-index: -1;
+}
+
+/* Glassmorphism Nav */
+.glass-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15, 16, 20, 0.8);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass);
+}
+
+.nav-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+/* Hero Section */
+.hero-banner {
+    height: 70vh;
+    background: url('https://images.hdqwalls.com/download/dune-part-two-2024-5k-o0-2560x1440.jpg') center/cover;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 5rem;
+}
+
+.hero-overlay {
+    padding-left: 5%;
+    background: linear-gradient(to top, #0f1014 10%, transparent);
+    width: 100%;
+}
+
+.badge {
+    background: var(--accent);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.hero-banner h1 {
+    font-size: 4rem;
+    margin: 10px 0;
+}
+
+/* Movie Cards */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+}
+
+.card {
+    background: var(--glass);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 1.2rem;
+}
+
+.rating {
+    color: #ffcc00;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
+
+.btn-book {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-book:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 20px rgba(255, 45, 85, 0.4);
 }

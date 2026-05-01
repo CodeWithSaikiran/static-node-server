@@ -4,13 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Node.js Site</title>
+    <title>CineStream | Premium Booking</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Welcome to Your Static Node.js Site!</h1>
-    <p>This page is served by Express.</p>
+
+    <div class="glow-bg"></div>
+
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <h1 class="logo">CINE<span>STREAM</span></h1>
+            <div class="nav-links">
+                <a href="#" class="active">Movies</a>
+                <a href="#">Events</a>
+                <a href="#">Sports</a>
+            </div>
+            <button class="btn-primary">Get Started</button>
+        </div>
+    </nav>
+
+    <section class="hero-banner">
+        <div class="hero-overlay">
+            <span class="badge">Trending #1</span>
+            <h1>Dune: Part Two</h1>
+            <p>Rise of the Prophet. The journey continues on the big screen.</p>
+            <div class="hero-btns">
+                <button class="btn-book">Book Tickets</button>
+                <button class="btn-trailer">Watch Trailer</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="content-area">
+        <div class="filter-bar">
+            <h2>Recommended</h2>
+            <div class="chips">
+                <span class="chip active">All</span>
+                <span class="chip">Action</span>
+                <span class="chip">Sci-Fi</span>
+                <span class="chip">Drama</span>
+            </div>
+        </div>
+        <div class="movie-grid" id="movie-grid"></div>
+    </main>
+
     <script src="script.js"></script>
 </body>
 
