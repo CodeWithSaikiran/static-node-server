@@ -1,27 +1,34 @@
-
-# write a dockerfile for a nodejs application that uses typescript and ts-node to run the application. The application should be built using the official node image and should install the necessary dependencies to run the application. The application should be built in a way that it can be easily deployed to a production environment multi stages
-# Use official Node.js LTS image for the build stage
+# --- Stage 1: Build & Compile ---
 FROM node:18-alpine AS build
-# Set working directory
 WORKDIR /usr/src/app
-# Copy package.json and package-lock.json
 COPY package*.json ./
-# Install dependencies
-RUN npm i
-# Copy the rest of the application code
+# Install all dependencies (including devDependencies for types/compilation)
+RUN npm install
 COPY . .
-# Build the TypeScript application
+# Compiles TS to JS (usually outputs to /dist)
 RUN npm run build
 
-# Use official Node.js LTS image for the production stage
+# --- Stage 2: Production Dependencies ---
+FROM node:18-alpine AS deps
+WORKDIR /usr/src/app
+COPY package*.json ./
+# Install ONLY production dependencies (excludes typescript, ts-node, @types)
+RUN npm install --omit=dev
+
+# --- Stage 3: Final Production Image ---
 FROM node:18-alpine
-# Set working directory
+# Best Practice: Set Node environment to production
+ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
-# Copy the built application from the build stage
+# Copy only the compiled JS from stage 1
 COPY --from=build /usr/src/app/dist ./dist
-# Expose the port the app runs on
-EXPOSE 3000
-# Start the application using ts-node
-CMD ["node", "dist/server.js"]
+# Copy only the production node_modules from stage 2
+COPY --from=deps /usr/src/app/node_modules ./node_modules
+# Copy package.json to ensure paths/scripts remain valid
+COPY package.json ./
 
+EXPOSE 3000
+
+# Use 'node' directly for maximum performance
+CMD ["node", "dist/server.js"]
